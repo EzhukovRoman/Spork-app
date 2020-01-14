@@ -1,0 +1,32 @@
+{
+  "name": "spork-app",
+  "version": "1.0.0",
+  "description": "Spork frontend",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html --out-dir build/dev",
+    "build": "parcel build src/index.html --out-dir build/release --public-url ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SporkHubr/Spork-app.git"
+  },
+  "author": "mkrl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SporkHubr/Spork-app/issues"
+  },
+  "homepage": "https://github.com/SporkHubr/Spork-app#readme",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "parcel-bundler": "^1.12.4",
+    "react-hot-loader": "^4.12.18",
+    "typescript": "^3.7.4"
+  }
+}

@@ -14,7 +14,9 @@ const ContentArea = styled.main`
 
 const Container = styled.section`
   & {
-    width: 600px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
   }
 `
 

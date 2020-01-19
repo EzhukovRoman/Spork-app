@@ -3,9 +3,14 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 import GitHubIcon from '../../assets/GitHubIcon'
 
+interface ISearchBarProps {
+    text: string
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onKeyPress?: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
 const SearchBarArea = styled.div`
   & {
-    width: 100%;
     display: flex;
     padding: 1em;
     background: ${p => p.theme.colors.bgAccent};
@@ -35,10 +40,10 @@ const Input = styled.input`
   }
 `
 
-const SearchBarComponent: FC = () => (
+const SearchBarComponent: FC<ISearchBarProps> = ({ onKeyPress, onChange, text }) => (
   <SearchBarArea>
     <GitHubIcon />
-    <Input placeholder='github/linguist'/>
+    <Input placeholder='github/linguist' value={text} onKeyPress={onKeyPress} onChange={onChange}/>
   </SearchBarArea>
 )
 

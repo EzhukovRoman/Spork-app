@@ -1,25 +1,24 @@
 // eslint-disable-next-line no-unused-vars
-import React, { FC } from 'react'
-import Theme from './components/ThemeComponent'
+import React, { useState, FC } from 'react'
+import ThemeContainer from './containers/ThemeContainer'
 import GlobalStyles from './styles/GlobalStyles'
 import Header from './components/layout/header/HeaderComponent'
-import { white } from './styles/themes'
 import LayoutContentComponent from './components/layout/LayoutContentComponent'
-import SearchPageComponent from './components/pages/SearchPageComponent'
-import { StateProvider } from './Context'
-import appReducer, { initialState } from './reducers/appReducer'
+import PageRouterContainer from './containers/PageRouterContainer'
+import { store } from './store'
+import { StoreProvider } from 'easy-peasy'
 
 const App: FC = () => {
   return (
-    <StateProvider initialState={initialState} reducer={appReducer}>
-      <Theme theme={white}>
+    <StoreProvider store={store}>
+      <ThemeContainer>
         <Header/>
         <LayoutContentComponent>
-          <SearchPageComponent />
+          <PageRouterContainer />
         </LayoutContentComponent>
         <GlobalStyles/>
-      </Theme>
-    </StateProvider>
+      </ThemeContainer>
+    </StoreProvider>
   )
 }
 

@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { FC } from 'react'
 import styled from 'styled-components'
-
+import { API_SIGNIN_URL } from '../../../constants/apiConstants'
 const HeaderArea = styled.header`
   & {
     padding: 1em;
@@ -15,7 +15,7 @@ const HeaderArea = styled.header`
 const Header: FC = () => (
   <HeaderArea>
     Spork
-    <a href='/signup'>Log in</a>
+    <a href={API_SIGNIN_URL}>Log in</a>
   </HeaderArea>
 )
 

@@ -16,5 +16,6 @@ export default div`
     border-radius: 11px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     margin-top: ${p => p.indent ? `${p.indent}rem` : `0`};
+    position: relative;
   }
 `

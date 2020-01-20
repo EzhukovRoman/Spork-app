@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { FC, useState } from 'react'
 import styled from 'styled-components'
+import { useStoreActions } from "easy-peasy";
 
 interface ICheckboxProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -11,19 +12,10 @@ const CheckboxArea = styled.div`
     display: none;
   }
   & label {
-        display: flex;
+    display: flex;
     align-items: center;
+    cursor: pointer;
   } 
-  & input + div:before{
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: ${p => p.theme.colors.bg};
-    position: absolute;
-    left: 4px;
-    right: 4px;
-  }
 `
 
 const Checkmark = styled.div`
@@ -35,15 +27,36 @@ const Checkmark = styled.div`
     position: relative;
     margin-right: 8px;
   }
+  &:before{
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: ${p => p.active ? p.theme.colors.bg : 'transparent'};
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    transition: background 0.1s ease-in-out;
+  }
 `
 
 const CheckboxComponent: FC<ICheckboxProps> = ({ onChange, text }) => {
-  const [checked, setChecked] = useState(true)
+  const [isChecked, setChecked] = useState(false)
+  const addDep = useStoreActions(state => state.repo.addDependency)
+  const removeDep = useStoreActions(state => state.repo.removeDependency)
+  const handleClick = () => {
+    setChecked(!isChecked)
+    if (!isChecked) {
+      addDep(text)
+    } else {
+      removeDep(text)
+    }
+  }
   return (
     <CheckboxArea>
       <label>
-        <Checkmark/>
-        <input type='checkbox' onChange={(e) => setChecked(true)} checked={checked} />
+        <Checkmark active={isChecked}/>
+        <input type='checkbox' onChange={handleClick} checked={isChecked} />
         {text}
       </label>
     </CheckboxArea>

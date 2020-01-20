@@ -20,7 +20,7 @@ const SearchBarArea = styled.div`
     align-items: center;
   }
   & svg path {
-    fill: ${p => p.theme.colors.primary};;
+    fill: ${p => p.theme.colors.primary};
   }
 `
 

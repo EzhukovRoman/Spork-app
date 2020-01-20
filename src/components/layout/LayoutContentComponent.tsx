@@ -16,7 +16,8 @@ const Container = styled.section`
   & {
     width: 800px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    max-height: 76vh;
+ 
   }
 `
 

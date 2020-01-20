@@ -1,6 +1,7 @@
 import { createStore, action, Action } from 'easy-peasy'
 import { PAGE_SEARCH, PAGE_SELECT_DEPS } from './constants/pageNameConstants'
 import { ITheme, white } from './styles/themes'
+import { userList } from './test/userList'
 
 // const changePage = useStoreActions(actions => actions.page.setPage)
 
@@ -31,14 +32,17 @@ interface IRepoModel {
   repository: string
   dependencies: string[]
   dependenciesSelected: string[]
+  // @TODO: strongly typed users according to the API schema response
+  users: any
   setRepo: Action<IRepoModel, string>
   setDependencies: Action<IRepoModel, string>
   addDependency: Action<IRepoModel, string>
   removeDependency: Action<IRepoModel, string>
+  setUsers: Action<IRepoModel, any>
 }
 
 const pageModel: IPageModel = {
-  currentPage: PAGE_SELECT_DEPS,
+  currentPage: PAGE_SEARCH,
   setPage: action((state, payload) => {
     state.currentPage = payload
   })
@@ -55,6 +59,7 @@ const repoModel: IRepoModel = {
   repository: '',
   dependencies: dummyList,
   dependenciesSelected: [],
+  users: userList,
   setRepo: action((state, payload) => {
     state.repository = payload
   }),
@@ -63,11 +68,12 @@ const repoModel: IRepoModel = {
   }),
   addDependency: action((state, payload) => {
     state.dependenciesSelected.push(payload)
-    console.log(state.dependenciesSelected)
   }),
   removeDependency: action((state, payload) => {
     state.dependenciesSelected = state.dependenciesSelected.filter(el => el !== payload)
-    console.log(state.dependenciesSelected)
+  }),
+  setUsers: action((state, payload) => {
+    state.users = payload
   })
 }
 
